@@ -1,0 +1,143 @@
+/* General Page Styling */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Black Background for Viewer */
+#renderCanvas {
+  width: 80%;
+  height: 100vh;
+  float: left;
+  background-color: black;
+}
+
+/* Sidebar Styling */
+#colorPicker {
+  width: 20%;
+  height: 100%;
+  background-color: #1e1e1e;
+  padding: 20px;
+  box-sizing: border-box;
+  float: right;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Mesh Name Styling */
+#meshName {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #ffcc00;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid #ffcc00;
+  width: 100%;
+  font-size: 50px;
+}
+
+/* Grid Layout for Buttons */
+.button-grid {
+  display: flex;
+  /* grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); */
+  gap: 20px;
+  width: 100%;
+  height: 80%;
+  margin-top: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons Styling */
+button {
+  width: 35%;
+  height: 10%;
+  border-radius: 10px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+/* Hover Effect */
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
+}
+
+/* White Button Special Case */
+button[style*="background-color: white"] {
+  border: 2px solid gray;
+}
+
+/* Reset Button Styling */
+.reset-button {
+  /* grid-column: span 4; */
+  /* background: linear-gradient(45deg, #d32f2f, #b71c1c); */
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #ffffff08;
+  color: white;
+}
+
+.reset-button:hover {
+  background: linear-gradient(45deg, #b71c1c, #d32f2f);
+}
+
+.hidden-meshes-container {
+  margin: 10px 0;
+  display: none;
+  width: 90%;
+  height: 3%;
+}
+
+.mesh-selection-container {
+  margin: 10px 0;
+  width: 90%;
+  height: 5%;
+}
+
+#meshSelectionDropdown {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+#meshSelectionDropdown:hover {
+  border-color: #888;
+}
+
+#meshSelectionDropdown option {
+  padding: 8px;
+}
+
+#hiddenMeshesDropdown {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+#hiddenMeshesDropdown:hover {
+  border-color: #888;
+}
+
+#hiddenMeshesDropdown option {
+  padding: 8px;
+}

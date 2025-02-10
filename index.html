@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Car Configurator</title>
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+  <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <canvas id="renderCanvas"></canvas>
+  <div id="colorPicker">
+    <div id="meshName">Select a Mesh</div>
+
+    <!-- Buttons Grid -->
+    <div class="button-grid">
+      <button style="background-color: red;" onclick="changeColor('red')"></button>
+      <button style="background-color: blue;" onclick="changeColor('blue')"></button>
+      <button style="background-color: green;" onclick="changeColor('green')"></button>
+      <button style="background-color: yellow;" onclick="changeColor('yellow')"></button>
+      <button style="background-color: purple;" onclick="changeColor('purple')"></button>
+      <button style="background-color: orange;" onclick="changeColor('orange')"></button>
+      <button style="background-color: black;" onclick="changeColor('black')"></button>
+      <button style="background-color: white; color: black;" onclick="changeColor('white')"></button>
+      <button style="background-image: url('assets/1.jpg'); background-size: cover;"
+        onclick="applyTexture('assets/1.jpg')"></button>
+      <button style="background-image: url('assets/2.jpg'); background-size: cover;"
+        onclick="applyTexture('assets/2.jpg')"></button>
+      <button style="background-image: url('assets/3.jpg'); background-size: cover;"
+        onclick="applyTexture('assets/3.jpg')"></button>
+      <button class="reset-button" onclick="resetAllMaterials()">Reset All</button>
+      <button style="background-color:  #ffffff08;color: white; font-size: 30px;font-weight: 600;" id="toggleButton"
+        onclick="toggleVisibility()">Hide Mesh</button>
+    </div>
+  </div>
+
+</body>
+<script src="./main.js"></script>
+
+</html>
