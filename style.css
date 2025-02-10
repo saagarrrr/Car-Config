@@ -32,7 +32,7 @@ html {
 
 /* Mesh Name Styling */
 #meshName {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-weight: bold;
   font-size: 18px;
   color: #ffcc00;
@@ -95,13 +95,13 @@ button[style*="background-color: white"] {
   margin: 10px 0;
   display: none;
   width: 90%;
-  height: 3%;
+  height: 2%;
 }
 
 .mesh-selection-container {
   margin: 10px 0;
   width: 90%;
-  height: 5%;
+  height: 3%;
 }
 
 #meshSelectionDropdown {
