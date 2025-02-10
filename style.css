@@ -95,24 +95,25 @@ button[style*="background-color: white"] {
   margin: 10px 0;
   display: none;
   width: 90%;
-  height: 2%;
+  height: 4%;
 }
 
 .mesh-selection-container {
   margin: 10px 0;
   width: 90%;
-  height: 3%;
+  height: 5%;
 }
 
 #meshSelectionDropdown {
   width: 100%;
-  padding: 8px;
+  height: 100%;
+  /* padding: 8px; */
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: white;
   cursor: pointer;
   margin-bottom: 10px;
-  font-size: 25px;
+  font-size: 14px;
 }
 
 #meshSelectionDropdown:hover {
@@ -126,12 +127,12 @@ button[style*="background-color: white"] {
 #hiddenMeshesDropdown {
   width: 100%;
   height: 100%;
-  padding: 8px;
+  /* padding: 8px; */
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: white;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 14px;
 }
 
 #hiddenMeshesDropdown:hover {
