@@ -40,7 +40,7 @@ html {
   padding: 10px;
   border-bottom: 2px solid #ffcc00;
   width: 100%;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 /* Grid Layout for Buttons */
@@ -81,7 +81,7 @@ button[style*="background-color: white"] {
 .reset-button {
   /* grid-column: span 4; */
   /* background: linear-gradient(45deg, #d32f2f, #b71c1c); */
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   background-color: #ffffff08;
   color: white;
