@@ -12,11 +12,23 @@ const createScene = function () {
     scene.clearColor = BABYLON.Color3.FromHexString("#e5f3fd"); // Blue background
     // Add camera
     const camera = new BABYLON.ArcRotateCamera("camera",
-        0, Math.PI / 3, 10,
+        0, Math.PI / 3, 10, // Alpha, Beta, Radius (adjust radius if needed)
         BABYLON.Vector3.Zero(),
         scene
     );
     camera.attachControl(canvas, true);
+    camera.setTarget(BABYLON.Vector3.Zero());
+
+    const hdrTexture = new BABYLON.HDRCubeTexture("assets/1.hdr", scene, 512);
+    scene.environmentTexture = hdrTexture;
+    scene.createDefaultSkybox(hdrTexture, true, 1000, 0.3); // Adds a skybox
+
+    // Adjust zoom intensity
+    camera.wheelPrecision = 65;  // Increase for slower zoom, decrease for faster zoom
+    camera.minZ = 0.1;           // Set the closest zoom limit
+    camera.lowerRadiusLimit = 5; // Prevent zooming too close
+    camera.upperRadiusLimit = 15; // Prevent zooming too far
+
     camera.setTarget(BABYLON.Vector3.Zero());
 
     // Add lights
@@ -24,7 +36,7 @@ const createScene = function () {
         new BABYLON.Vector3(0, 1, 0),
         scene
     );
-    light.intensity = 3;
+    light.intensity = 5;
 
     // Load car model
     BABYLON.SceneLoader.ImportMesh("", "assets/", "modelNew2.glb", scene, function (meshes, animationGroups) {
@@ -35,6 +47,8 @@ const createScene = function () {
             mesh.isPickable = true;
             availableMeshes.push(mesh);
         });
+
+        
 
         // Log mesh names
         logMeshNames();
@@ -199,16 +213,17 @@ function changeColor(color) {
     const colorHex = getColorHex(color);
 
     if (!selectedMesh.material) {
-        selectedMesh.material = new BABYLON.StandardMaterial("meshMaterial", scene);
+        selectedMesh.material = new BABYLON.PBRMaterial(selectedMesh.name + "_material", scene);
     } else {
         selectedMesh.material = selectedMesh.material.clone(selectedMesh.name + "_material");
     }
 
-    if (selectedMesh.material instanceof BABYLON.PBRMaterial) {
-        selectedMesh.material.albedoColor = BABYLON.Color3.FromHexString(colorHex);
-    } else {
-        selectedMesh.material.diffuseColor = BABYLON.Color3.FromHexString(colorHex);
-    }
+    selectedMesh.material.albedoColor = BABYLON.Color3.FromHexString(colorHex);
+
+    // Add roughness and metallicness values
+    
+    selectedMesh.material.metallic = 1;  // Adjust for more/less metallic effect
+    selectedMesh.material.roughness = 0.3; // Adjust for a shinier or matte finish
 }
 
 function applyTexture(texturePath) {
@@ -221,16 +236,16 @@ function applyTexture(texturePath) {
     const texture = new BABYLON.Texture(texturePath, scene);
 
     if (!selectedMesh.material) {
-        selectedMesh.material = new BABYLON.StandardMaterial("meshMaterial", scene);
+        selectedMesh.material = new BABYLON.PBRMaterial(selectedMesh.name + "_material", scene);
     } else {
         selectedMesh.material = selectedMesh.material.clone(selectedMesh.name + "_material");
     }
 
-    if (selectedMesh.material instanceof BABYLON.PBRMaterial) {
-        selectedMesh.material.albedoTexture = texture;
-    } else {
-        selectedMesh.material.diffuseTexture = texture;
-    }
+    selectedMesh.material.albedoTexture = texture;
+
+    // Add roughness and metallicness values
+    selectedMesh.material.metallic = 1;  // Adjust for more/less metallic effect
+    selectedMesh.material.roughness = 0.2; // Adjust for a shinier or matte finish
 }
 
 function getColorHex(color) {
