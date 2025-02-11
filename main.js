@@ -36,7 +36,7 @@ const createScene = function () {
         new BABYLON.Vector3(0, 1, 0),
         scene
     );
-    light.intensity = 5;
+    light.intensity = 3;
 
     // Load car model
     BABYLON.SceneLoader.ImportMesh("", "assets/", "modelNew2.glb", scene, function (meshes, animationGroups) {
@@ -48,7 +48,7 @@ const createScene = function () {
             availableMeshes.push(mesh);
         });
 
-        
+
 
         // Log mesh names
         logMeshNames();
@@ -71,9 +71,23 @@ const createScene = function () {
 
         // Initialize hidden meshes dropdown
         updateHiddenMeshesDropdown();
+        const pipeline = new BABYLON.DefaultRenderingPipeline(
+            "defaultPipeline", // Pipeline name
+            true,              // Turn it on/off
+            scene,             // Apply to the scene
+            [camera]           // Apply to the camera
+        );
+
+        // Enable bloom effect
+        pipeline.bloomEnabled = true;
+        pipeline.bloomThreshold = 1;  // Controls which areas bloom (0 = all, 1 = very bright areas)
+        pipeline.bloomIntensity = 0.1;  // Controls the bloom brightness
+        pipeline.bloomKernel = 64;      // Controls the blur size (higher = smoother glow)
     });
     return scene;
 };
+
+
 
 // Initialize the scene
 scene = createScene();
@@ -221,7 +235,7 @@ function changeColor(color) {
     selectedMesh.material.albedoColor = BABYLON.Color3.FromHexString(colorHex);
 
     // Add roughness and metallicness values
-    
+
     selectedMesh.material.metallic = 1;  // Adjust for more/less metallic effect
     selectedMesh.material.roughness = 0.3; // Adjust for a shinier or matte finish
 }
@@ -245,7 +259,7 @@ function applyTexture(texturePath) {
 
     // Add roughness and metallicness values
     selectedMesh.material.metallic = 1;  // Adjust for more/less metallic effect
-    selectedMesh.material.roughness = 0.2; // Adjust for a shinier or matte finish
+    selectedMesh.material.roughness = 0.3; // Adjust for a shinier or matte finish
 }
 
 function getColorHex(color) {
@@ -264,11 +278,21 @@ function getColorHex(color) {
     return colors[color] || "#FFFFFF";
 }
 
+function applyGlowToMesh(meshName, color = new BABYLON.Color3(1, 1, 0)) {
+    const mesh = scene.getMeshByName(meshName); // Find mesh by name
+    if (mesh && mesh.material) {
+        mesh.material.emissiveColor = color; // Apply emissive glow color
+    } else {
+        console.warn("Mesh not found or has no material:", meshName);
+    }
+}
+
 function logMeshNames() {
     if (carMesh) {
         carMesh.getChildMeshes().forEach(mesh => {
             console.log(mesh.name);
         });
+        applyGlowToMesh("lightAnimated", new BABYLON.Color3(1, 1, 0)); // Yellow glow
     }
 }
 
